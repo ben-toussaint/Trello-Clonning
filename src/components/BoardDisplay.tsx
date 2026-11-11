@@ -38,7 +38,7 @@ function BoardDisplay() {
       return workspace.map((elt, index) => {
         return (
           <div className="flex items-center gap-5 rounded-2xl shadow-lg">
-            <div className="rounded-2xl overflow-hidden">
+            <div className="rounded-2xl md:w-auto overflow-hidden">
               <img className="h-30 w-150 " src={elt.image} alt={elt.name} />
               <div className="p-2.5 font-semibold bg-[#2d2e2d]">
                 <h3>{elt.name}</h3>
@@ -58,7 +58,9 @@ function BoardDisplay() {
         <img src={recently} className="h-7 w-7 invert" alt="recently" />
         <h2 className="font-bold text-xl">Recently viewed</h2>
       </div>
-      <div className="flex gap-10 m-10">{recentCards}</div>
+      <div className="flex flex-wrap sm:w-80 lg:w-auto lg:flex-nowrap gap-10 m-10">
+        {recentCards}
+      </div>
     </div>
   );
 }

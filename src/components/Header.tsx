@@ -8,15 +8,29 @@ import board from "../assets/board.png";
 import template from "../assets/template.png";
 import { useState } from "react";
 
+interface Descriptions {
+  share: string;
+  notification: string;
+  information: string;
+  account: string;
+}
+
 function Header() {
   //function to display the floating popup for suggestions.
   const [isShown, setIsShown] = useState(false);
+  const [isHovered, setIsHovered] = useState(false);
+  const descriptions: Descriptions = {
+    share: "Share your thoughts on trello",
+    notification: "Notification",
+    information: "Information",
+    account: "Account",
+  };
   function floatingSuggestion() {
     return (
-      <div className="absolute flex flex-col rounded-2xl bg-gray-500 p-3 text-xs">
-        <div>
-          <div className="flex gap-3 items-center">
-            <img src={board} className="w-3 h-3" alt="board" />
+      <div className="absolute flex flex-col gap-3 rounded-2xl bg-gray-500 p-3 text-xs">
+        <div className="p-2 hover:bg-[#0f0f0f53] transition-colors cursor-pointer">
+          <div className="flex gap-3 font-semibold items-center">
+            <img src={board} className="invert w-3 h-3" alt="board" />
             <h3>Create board</h3>
           </div>
           <p>
@@ -25,9 +39,9 @@ function Header() {
           </p>
         </div>
         <hr />
-        <div>
-          <div className="flex gap-3 items-center">
-            <img src={template} className="w-3 h-3" alt="template" />
+        <div className="p-2 hover:bg-[#0f0f0f53] transition-colors cursor-pointer">
+          <div className="flex font-semibold gap-3 items-center">
+            <img src={template} className="invert w-3 h-3" alt="template" />
             <h3>Start with a Template</h3>
           </div>
           <p>Get started faster with a board template</p>
@@ -42,7 +56,23 @@ function Header() {
     }
     setIsShown(true);
   }
-
+  function floatingDescriptions(descriptions: Descriptions) {
+    return (
+      <div className="">
+        <img
+          src={speaker}
+          className="h-4 w-4 cursor-pointer object-contain invert"
+          alt="Speaker"
+        />
+        <span className="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-sm bg-gray-600 p-1.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
+          Share your thoughts on trello
+        </span>
+      </div>
+    );
+  }
+  function handleHovers() {
+    setIsHovered(true);
+  }
   return (
     <header className="flex items-center justify-between bg-[#1d1d1f] px-4 py-3 text-white shadow-sm">
       <div className="flex items-center gap-3">
@@ -86,8 +116,9 @@ function Header() {
             {isShown && floatingSuggestion()}
           </div>
         </div>
+
         <div className="flex gap-4.5 items-center">
-          <div className="relative group">
+          <div className="">
             <img
               src={speaker}
               className="h-4 w-4 cursor-pointer object-contain invert"
