@@ -1,4 +1,3 @@
-import React from "react";
 import squares from "../assets/squares.png";
 import trello from "../assets/trello icon.png";
 import search from "../assets/search.png";
@@ -8,8 +7,12 @@ import info from "../assets/info.png";
 function Header() {
   return (
     <div className="flex items-center text-white bg-gray-800">
-      <div className="flex gap-2 m-3">
-        <img src={squares} className="h-6 w-6 object-contain" alt="Squares" />
+      <div className="flex gap-3 m-3.5 items-center">
+        <img
+          src={squares}
+          className="invert h-4 w-4 font-bold object-contain"
+          alt="Squares"
+        />
         <img
           src={trello}
           className="h-6 w-6 object-contain"
@@ -19,7 +22,7 @@ function Header() {
       <div className="flex items-center gap-2 ml-auto mr-2.5">
         <div className="flex gap-3">
           <div className="flex items-center gap-2 px-2 py-1 m-2 mr-0 font-sans text-sm rounded-sm border-white border border-solid focus:border-blue-700">
-            <img src={search} className="h-4 w-4" alt="search" />{" "}
+            <img src={search} className="invert h-4 w-4" alt="search" />{" "}
             <input
               type="text"
               className="focus:outline-none max-w-185 min-w-185"
@@ -35,7 +38,7 @@ function Header() {
           <div className="relative group">
             <img
               src={speaker}
-              className="h-4 w-4 object-contain"
+              className="invert h-4 w-4 object-contain"
               alt="speaker"
             />
 
@@ -46,7 +49,7 @@ function Header() {
           <div>
             <img
               src={notification}
-              className="h-4 w-4 object-contain"
+              className="invert h-4 w-4 object-contain"
               alt="notification"
             />
             {/* <span className="text-xs absolute text-white font-sans bg-gray-600 p-1.5 rounded-sm ml-[-6%] mt-2">
@@ -54,7 +57,11 @@ function Header() {
             </span> */}
           </div>
           <div>
-            <img src={info} className="w-4 h-4 object-contain" alt="info" />
+            <img
+              src={info}
+              className=" invert w-4 h-4 object-contain"
+              alt="info"
+            />
             {/* <span className="text-xs absolute text-white font-sans bg-gray-600 p-1.5 rounded-sm ml-[0%] mt-2">
               Information
             </span> */}
