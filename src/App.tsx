@@ -1,16 +1,12 @@
 import Header from "./components/Header.tsx";
 import "./App.css";
 import Sidebar from "./components/Sidebar.tsx";
-import BoardDisplay from "./components/BoardDisplay.tsx";
 
 function App() {
   return (
-    <div className="overflow-hidden">
+    <div>
       <Header />
-      <div className="flex">
-        <Sidebar />
-        <BoardDisplay />
-      </div>
+      <Sidebar />
     </div>
   );
 }
