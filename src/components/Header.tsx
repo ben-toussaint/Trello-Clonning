@@ -21,7 +21,7 @@ function Header() {
       </div>
       <div className="flex items-center gap-2 ml-auto mr-2.5">
         <div className="flex gap-3">
-          <div className="flex items-center gap-2 px-2 py-1 m-2 mr-0 font-sans text-sm rounded-sm border-white border border-solid focus:border-blue-700">
+          <div className="flex items-center gap-2 px-2 py-1 ml-3 m-2 mr-0 font-sans text-sm rounded-sm border-white border border-solid focus:border-blue-700">
             <img src={search} className="invert h-4 w-4" alt="search" />{" "}
             <input
               type="text"
