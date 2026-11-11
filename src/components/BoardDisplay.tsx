@@ -32,7 +32,7 @@ function BoardDisplay() {
       others: {},
     },
   ]);
-
+  //function to create display the trello boards
   function Recentboards(workspace: workspaceDataObj[]) {
     if (workspace[0] !== null) {
       return workspace.map((elt, index) => {
@@ -51,7 +51,7 @@ function BoardDisplay() {
     return <h1>No Recent Cards Available</h1>;
   }
   const recentCards = Recentboards(workspace);
-
+  //function to insert the new trello boards
   return (
     <div className="bg-[#191a1cc5] w-full">
       <div className="flex items-center gap-4 m-8">

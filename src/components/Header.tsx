@@ -4,8 +4,45 @@ import search from "../assets/search.png";
 import speaker from "../assets/speaker.png";
 import notification from "../assets/notification.png";
 import info from "../assets/info.png";
+import board from "../assets/board.png";
+import template from "../assets/template.png";
+import { useState } from "react";
 
 function Header() {
+  //function to display the floating popup for suggestions.
+  const [isShown, setIsShown] = useState(false);
+  function floatingSuggestion() {
+    return (
+      <div className="absolute flex flex-col rounded-2xl bg-gray-500 p-3 text-xs">
+        <div>
+          <div className="flex gap-3 items-center">
+            <img src={board} className="w-3 h-3" alt="board" />
+            <h3>Create board</h3>
+          </div>
+          <p>
+            A board is made up of cards ordered on lists. Use to manage
+            projects, track information, or organize anything
+          </p>
+        </div>
+        <hr />
+        <div>
+          <div className="flex gap-3 items-center">
+            <img src={template} className="w-3 h-3" alt="template" />
+            <h3>Start with a Template</h3>
+          </div>
+          <p>Get started faster with a board template</p>
+        </div>
+      </div>
+    );
+  }
+  function handleClick() {
+    if (isShown == true) {
+      setIsShown(false);
+      return;
+    }
+    setIsShown(true);
+  }
+
   return (
     <header className="flex items-center justify-between bg-[#1d1d1f] px-4 py-3 text-white shadow-sm">
       <div className="flex items-center gap-3">
@@ -39,9 +76,15 @@ function Header() {
               name="Search"
             />
           </div>
-          <button className="px-3 py-1 ml-0 m-2 font-sans text-sm font-semibold rounded-sm text-white bg-blue-700">
-            Create
-          </button>
+          <div>
+            <button
+              onClick={handleClick}
+              className="px-3 py-1 ml-0 m-2 font-sans text-sm font-semibold rounded-sm text-white bg-blue-700"
+            >
+              Create
+            </button>
+            {isShown && floatingSuggestion()}
+          </div>
         </div>
         <div className="flex gap-4.5 items-center">
           <div className="relative group">
