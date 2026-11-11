@@ -6,7 +6,7 @@ import dropdown from "../assets/drop.png";
 
 function Sidebar() {
   return (
-    <div className="flex flex-col gap-10 bg-[#191a1c] h-screen w-76">
+    <div className="flex flex-col gap-10 bg-[#191a1c] h-screen w-[400px]">
       <div className="flex flex-col gap-3 mt-12 ml-10">
         <div className="flex gap-2.5 items-center ">
           <img src={board} className="invert w-5 h-4" alt="board-icon" />

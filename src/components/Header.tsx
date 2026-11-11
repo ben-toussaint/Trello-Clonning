@@ -28,31 +28,22 @@ function Header() {
           />
         </div>
       </div>
-
-      <div className="flex items-center gap-3">
-        <div className="flex items-center gap-2 rounded-sm border border-white/30 bg-white/5 px-2 py-1.5">
-          <img
-            src={search}
-            className="h-4 w-4 object-contain invert"
-            alt="Search"
-          />
-          <input
-            type="text"
-            className="w-48 bg-transparent text-sm text-white placeholder:text-gray-300 focus:outline-none"
-            placeholder="Search"
-            name="Search"
-            aria-label="Search"
-          />
+      <div className="flex items-center gap-2 ml-auto mr-2.5">
+        <div className="flex gap-3">
+          <div className="flex items-center gap-2 px-2 py-1 ml-3 m-2 mr-0 font-sans text-sm rounded-sm border-white border border-solid focus:border-blue-700">
+            <img src={search} className="invert h-4 w-4" alt="search" />{" "}
+            <input
+              type="text"
+              className="focus:outline-none max-w-185 min-w-185"
+              placeholder="Search"
+              name="Search"
+            />
+          </div>
+          <button className="px-3 py-1 ml-0 m-2 font-sans text-sm font-semibold rounded-sm text-white bg-blue-700">
+            Create
+          </button>
         </div>
-
-        <button
-          type="button"
-          className="rounded-sm bg-blue-700 px-3 py-1.5 text-sm font-semibold text-white hover:bg-blue-600"
-        >
-          Create
-        </button>
-
-        <div className="flex items-center gap-4">
+        <div className="flex gap-4.5 items-center">
           <div className="relative group">
             <img
               src={speaker}
