@@ -19,12 +19,6 @@ function Header() {
   //function to display the floating popup for suggestions.
   const [isShown, setIsShown] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const descriptions: Descriptions = {
-    share: "Share your thoughts on trello",
-    notification: "Notification",
-    information: "Information",
-    account: "Account",
-  };
   function floatingSuggestion() {
     return (
       <div className="absolute flex flex-col gap-3 rounded-2xl bg-gray-500 p-3 text-xs">
@@ -55,23 +49,6 @@ function Header() {
       return;
     }
     setIsShown(true);
-  }
-  function floatingDescriptions(descriptions: Descriptions) {
-    return (
-      <div className="">
-        <img
-          src={speaker}
-          className="h-4 w-4 cursor-pointer object-contain invert"
-          alt="Speaker"
-        />
-        <span className="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-sm bg-gray-600 p-1.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
-          Share your thoughts on trello
-        </span>
-      </div>
-    );
-  }
-  function handleHovers() {
-    setIsHovered(true);
   }
   return (
     <header className="flex items-center justify-between bg-[#1d1d1f] px-4 py-3 text-white shadow-sm">
