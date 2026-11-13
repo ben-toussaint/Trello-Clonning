@@ -7,18 +7,17 @@ import info from "../assets/info.png";
 import board from "../assets/board.png";
 import template from "../assets/template.png";
 import { useState } from "react";
+import { iconNames } from "lucide-react/dynamic";
 
 interface Descriptions {
-  share: string;
-  notification: string;
-  information: string;
-  account: string;
+  [key: string]: string;
 }
 
 function Header() {
   //function to display the floating popup for suggestions.
   const [isShown, setIsShown] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
+  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
   function floatingSuggestion() {
     return (
       <div className="absolute flex flex-col gap-3 rounded-2xl bg-gray-500 p-3 text-xs">
@@ -50,6 +49,26 @@ function Header() {
     }
     setIsShown(true);
   }
+  //working on the floating Description
+  const descriptions = {
+    share: "Share your thoughts on trello",
+    notification: "Notification",
+    information: "Information",
+    account: "Account",
+  };
+
+  function floatingDescription(iconNames, descriptions: Descriptions) {
+    return (
+      <span className="absolute bg-gray-300 p-2 rounded-2xl text-xs w-max flex items-center justify-center ml-[-90px] mt-2">
+        {descriptions[iconNames]}
+      </span>
+    );
+  }
+  // const floatingDescriptionDisplay = floatingDescription(descriptions);
+  function handleHover(iconName: string | null) {
+    setHoveredIcon(iconName);
+  }
+
   return (
     <header className="flex items-center justify-between bg-[#1d1d1f] px-4 py-3 text-white shadow-sm">
       <div className="flex items-center gap-3">
@@ -94,31 +113,64 @@ function Header() {
           </div>
         </div>
 
+        {
+          //Left side icons arrangment
+        }
         <div className="flex gap-4.5 items-center">
-          <div className="">
+          {
+            //Speaker
+          }
+          <div
+            onMouseEnter={() => handleHover("share")}
+            onMouseLeave={() => handleHover(null)}
+            className="relative"
+          >
             <img
               src={speaker}
               className="h-4 w-4 cursor-pointer object-contain invert"
               alt="Speaker"
             />
-            <span className="absolute left-1/2 top-full z-50 mt-2 -translate-x-1/2 whitespace-nowrap rounded-sm bg-gray-600 p-1.5 text-xs text-white opacity-0 transition-opacity group-hover:opacity-100">
-              Share your thoughts on trello
-            </span>
+            {iconNames && floatingDescription("share", descriptions)}
           </div>
-
-          <img
-            src={notification}
-            className="h-4 w-4 cursor-pointer object-contain invert"
-            alt="Notifications"
-          />
-          <img
-            src={info}
-            className="h-4 w-4 cursor-pointer object-contain invert"
-            alt="Information"
-          />
-
-          <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#00a4e5] text-[10px] font-semibold text-white">
-            MT
+          {
+            //notification
+          }
+          <div
+            onMouseEnter={() => handleHover("notification")}
+            onMouseLeave={() => handleHover(null)}
+          >
+            <img
+              src={notification}
+              className="h-4 w-4 cursor-pointer object-contain invert"
+              alt="Notifications"
+            />
+            {isHovered && floatingDescription("notification", descriptions)}
+          </div>
+          {
+            //information
+          }
+          <div
+            onMouseEnter={() => handleHover("information")}
+            onMouseLeave={() => handleHover(null)}
+          >
+            <img
+              src={info}
+              className="h-4 w-4 cursor-pointer object-contain invert"
+              alt="Information"
+            />
+            {isHovered && floatingDescription("information", descriptions)}
+          </div>
+          {
+            //account
+          }
+          <div
+            onMouseEnter={() => handleHover("account")}
+            onMouseLeave={() => handleHover(null)}
+          >
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#00a4e5] text-[10px] font-semibold text-white">
+              MT
+            </div>
+            {isHovered && floatingDescription("account", descriptions)}
           </div>
         </div>
       </div>
