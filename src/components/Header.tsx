@@ -9,15 +9,15 @@ import template from "../assets/template.png";
 import { useState } from "react";
 import { iconNames } from "lucide-react/dynamic";
 
-interface Descriptions {
-  [key: string]: string;
-}
+// interface Descriptions {
+//   [key: string]: string;
+// }
 
 function Header() {
   //function to display the floating popup for suggestions.
   const [isShown, setIsShown] = useState(false);
   const [isHovered, setIsHovered] = useState(false);
-  const [hoveredIcon, setHoveredIcon] = useState<string | null>(null);
+  const [hoveredIcon, setHoveredIcon] = useState<IconKeys | null>(null);
   function floatingSuggestion() {
     return (
       <div className="absolute flex flex-col gap-3 rounded-2xl bg-gray-500 p-3 text-xs">
@@ -56,16 +56,20 @@ function Header() {
     information: "Information",
     account: "Account",
   };
+  type IconKeys = keyof typeof descriptions;
 
-  function floatingDescription(iconNames, descriptions: Descriptions) {
-    return (
-      <span className="absolute bg-gray-300 p-2 rounded-2xl text-xs w-max flex items-center justify-center ml-[-90px] mt-2">
-        {descriptions[iconNames]}
-      </span>
-    );
+  function floatingDescription() {
+    if (hoveredIcon) {
+      return (
+        <span className="absolute bg-gray-300 p-2 rounded-2xl text-xs w-max flex items-center justify-center  mt-2">
+          {descriptions[hoveredIcon]}
+        </span>
+      );
+    }
+    return;
   }
   // const floatingDescriptionDisplay = floatingDescription(descriptions);
-  function handleHover(iconName: string | null) {
+  function handleHover(iconName: IconKeys | null) {
     setHoveredIcon(iconName);
   }
 
@@ -122,7 +126,10 @@ function Header() {
           }
           <div
             onMouseEnter={() => handleHover("share")}
-            onMouseLeave={() => handleHover(null)}
+            onMouseLeave={() => {
+              handleHover(null);
+              setIsHovered(false);
+            }}
             className="relative"
           >
             <img
@@ -130,47 +137,56 @@ function Header() {
               className="h-4 w-4 cursor-pointer object-contain invert"
               alt="Speaker"
             />
-            {iconNames && floatingDescription("share", descriptions)}
+            {iconNames && floatingDescription()}
           </div>
           {
             //notification
           }
           <div
             onMouseEnter={() => handleHover("notification")}
-            onMouseLeave={() => handleHover(null)}
+            onMouseLeave={() => {
+              handleHover(null);
+              setIsHovered(false);
+            }}
           >
             <img
               src={notification}
               className="h-4 w-4 cursor-pointer object-contain invert"
               alt="Notifications"
             />
-            {isHovered && floatingDescription("notification", descriptions)}
+            {isHovered && floatingDescription()}
           </div>
           {
             //information
           }
           <div
             onMouseEnter={() => handleHover("information")}
-            onMouseLeave={() => handleHover(null)}
+            onMouseLeave={() => {
+              handleHover(null);
+              setIsHovered(false);
+            }}
           >
             <img
               src={info}
               className="h-4 w-4 cursor-pointer object-contain invert"
               alt="Information"
             />
-            {isHovered && floatingDescription("information", descriptions)}
+            {isHovered && floatingDescription()}
           </div>
           {
             //account
           }
           <div
             onMouseEnter={() => handleHover("account")}
-            onMouseLeave={() => handleHover(null)}
+            onMouseLeave={() => {
+              handleHover(null);
+              setIsHovered(false);
+            }}
           >
             <div className="flex h-7 w-7 items-center justify-center rounded-full bg-[#00a4e5] text-[10px] font-semibold text-white">
               MT
             </div>
-            {isHovered && floatingDescription("account", descriptions)}
+            {isHovered && floatingDescription()}
           </div>
         </div>
       </div>
